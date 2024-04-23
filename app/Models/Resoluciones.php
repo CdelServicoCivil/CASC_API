@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resoluciones extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'id',
+        'numero_resolucion',
+        'resolucion',
+    
+    ]; 
 }

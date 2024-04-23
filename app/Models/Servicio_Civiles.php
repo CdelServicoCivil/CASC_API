@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servicio_Civiles extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nombre',
+        'pais',
+        'enlace',
+      
+    ]; 
 }

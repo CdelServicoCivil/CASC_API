@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'Nombre',
+        'Apellido',
+        'Usuario',
         'email',
+        'role_id',
         'password',
+        'enabled'
     ];
 
     /**
@@ -40,6 +44,23 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'enabled' => 'boolean',
     ];
+
+
+    public function rols ()
+    {
+        return $this->belongsToMany(Rol::class, 'user');
+    }
+
+
+    public function isAuthorized($object, $operation)
+    {
+        return Db::table('rol-permisos')
+            ->where('object', $object)
+            ->where('operation', $operation)
+            ->join('user', 'id.role_id', '=', 'rol-permisos.role_id')
+            ->where('id.user', $this->id)
+            ->exists();
+    }
 }

@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name',
+    ];
+
+    public function Permisos()
+    {
+        return $this->hasMany(Permisos::class, 'name', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(users::class, 'Nombre')->withTrashed();
+    }
 }
+ 

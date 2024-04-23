@@ -14,6 +14,11 @@ class Pac extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'PAC' => $this->PAC,
+            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y h:i A'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y h:i A'),
+        ];
     }
 }

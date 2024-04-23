@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pac extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'id',
+        'PAC',
+    ];
 }

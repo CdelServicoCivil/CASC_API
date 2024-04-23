@@ -13,7 +13,14 @@ class Resoluciones extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
-        return parent::toArray($request);
+    {  
+        return [
+        'id' => $this->id,
+        'numero_resolucion' => $this->numero_resolucion,
+        'resolucion'=>$this->resolucion,
+        'created_at' => Carbon::parse($this->created_at)->format('d/m/Y h:i A'),
+        'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y h:i A'),
+    ];
+    
     }
 }

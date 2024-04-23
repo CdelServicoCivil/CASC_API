@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Servicio_Civiles extends JsonResource
+class Rol_PermisoResources extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,8 @@ class Servicio_Civiles extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'nombre' => $this->nombre,
-            'pais' => $this->pais,
-            'enlace'=> $this->enlace,
+            'role_id' =>  new RolResources($this->Role),
+            'permiso_id' => new PermisosResources($this->Permission),
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y h:i A'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y h:i A'),
         ];
